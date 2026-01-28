@@ -1,6 +1,6 @@
-# SENG 438 - Software Testing, Reliability, and Quality
+﻿# SENG 438 - Software Testing, Reliability, and Quality
 
-## Lab Report #1 – Introduction to Testing and Defect Tracking
+## Lab Report #1 - Introduction to Testing and Defect Tracking
 
 **Group: 08**
 
@@ -32,39 +32,47 @@ However, our understanding was largely conceptual. We had not yet experienced th
 
 ## High-level Description of the Exploratory Testing Plan
 
-Our exploratory testing plan for the ATM simulation system was structured around several key objectives and strategies to maximize defect discovery within the allocated timeframe.
+Our exploratory testing approach for the ATM simulation system was designed as a **manual, non-scripted testing phase** conducted after initial system familiarization. This phase allowed testers to freely explore system functionality without predetermined test cases, leveraging domain knowledge and intuition to uncover defects that might not be captured through formal scripted testing.
 
-### Goals and Objectives
+### Testing Methodology
 
-The primary goal of our exploratory testing was to discover defects that might not be immediately obvious from requirements documentation, particularly those related to edge cases, boundary conditions, usability issues, and unexpected user behaviors. We aimed to validate the robustness of the system under various realistic and unrealistic usage scenarios.
+Exploratory testing was conducted as an informal, session-based activity where test design, test execution, and defect investigation occurred simultaneously. Unlike scripted testing, which follows predefined procedures, our exploratory approach relied on tester creativity, critical thinking, and real-time decision-making to guide the testing process. This method was informed by our prior familiarization with the ATM system's basic operations, interface, and documented requirements (Appendix B), enabling testers to form intelligent hypotheses about potential failure points.
 
-### Time-Boxing Strategy
+### Time-Boxing and Session Structure
 
-We allocated approximately 30 minutes for exploratory testing as specified in the lab instructions. Within this timeframe, we adopted a breadth-first approach for the initial 15 minutes to gain familiarity with all major system functions, followed by depth-focused testing on areas that appeared most prone to defects during the remaining time.
+The exploratory testing phase was time-boxed to approximately **30 minutes per testing pair**, as specified in the lab instructions. This constraint encouraged focused, goal-oriented exploration rather than aimless system interaction. Within this timeframe, testers were expected to balance breadth (covering multiple functional areas) with depth (thoroughly investigating suspicious behaviors or complex interactions).
 
-### Areas of Focus
+### Focus Areas and Testing Objectives
 
-Our exploratory testing targeted the following functional areas:
+Our exploratory testing plan targeted the following high-level focus areas, selected based on their criticality to ATM functionality and potential for state-dependent defects:
 
-1. **Authentication and Session Management**: Testing card insertion, PIN validation, invalid PIN handling, and session termination scenarios
-2. **Withdrawal Transactions**: Examining various withdrawal amounts, insufficient balance scenarios, and cash availability constraints
-3. **Deposit Transactions**: Testing deposit amount entry, envelope insertion, and cancellation workflows
-4. **Transfer Transactions**: Verifying transfers between different account types and validating balance updates
-5. **Balance Inquiry**: Checking accuracy of balance displays and receipt generation
-6. **Error Handling and Edge Cases**: Testing system behavior with invalid inputs, boundary values (e.g., zero amounts, extremely large amounts), and interrupted transactions
-7. **System Startup and Shutdown**: Verifying proper initialization and graceful system termination
-8. **User Interface and Usability**: Assessing the clarity of prompts, error messages, and overall user experience
+1. **Transaction Correctness**: Exploring the accuracy and completeness of withdrawal, deposit, transfer, and balance inquiry transactions across different account types (checking, savings, money market) and various operational conditions.
 
-### Testing Approach Rationale
+2. **Balance and Available Balance Consistency**: Investigating whether account balances and available balances are correctly maintained and displayed throughout transaction sequences, particularly after multiple consecutive operations or interrupted transactions.
 
-Exploratory testing was particularly suitable for this ATM system because:
+3. **Account Type Validation**: Testing the system's ability to correctly distinguish between different account types, enforce account-specific rules, and handle transactions involving accounts that share common properties (e.g., both cards accessing the same checking account).
 
-- The system has numerous user interaction points where unexpected behaviors could occur
-- Real-world ATM usage involves diverse user scenarios that cannot all be anticipated in scripted tests
-- The system's state-dependent behavior (balances, cash on hand) creates opportunities for defects that emerge from specific sequences of operations
-- Exploratory testing allowed us to leverage intuition about how users might misuse or misunderstand the system
+4. **Error Handling and Recovery**: Examining system responses to invalid inputs, boundary conditions, insufficient funds, insufficient cash on hand, and exceptional scenarios not fully specified in requirements documentation.
 
-We documented each defect immediately upon discovery to ensure accuracy of reproduction steps and system state information, recognizing that the ATM's transactional nature makes exact reproduction difficult if context is lost.
+5. **Transaction Cancellation and State Management**: Exploring the correctness of cancellation functionality at various stages of each transaction type, and verifying that cancelled transactions do not leave the system in inconsistent or incorrect states.
+
+6. **State-Dependent System Behavior**: Investigating how the system handles sequences of transactions that modify system state (cash availability, account balances), particularly focusing on transitions between states and potential race conditions or state corruption.
+
+### Rationale for Exploratory Testing
+
+Exploratory testing was particularly appropriate for the ATM simulation system for several reasons:
+
+- **Complex State Space**: The ATM system maintains dynamic state (account balances, cash on hand, transaction history) that changes with each operation. Exploratory testing enables testers to investigate state-dependent defects that emerge only under specific sequences of operations, which may not be anticipated in predefined test scripts.
+
+- **Uncovering Logic Defects**: Manual exploration allows testers to question assumptions, test boundary conditions creatively, and pursue anomalies that scripted tests might overlook. This is valuable for discovering logical errors in transaction processing, balance calculations, and validation rules.
+
+- **Real-World Usage Patterns**: Exploratory testing encourages testers to simulate realistic user behaviors, including mistakes, unusual input patterns, and edge cases that occur in actual ATM usage but may not be formally specified in requirements.
+
+- **Rapid Feedback on System Quality**: The non-scripted nature of exploratory testing allows for quick initial assessment of system stability and identification of high-severity defects early in the testing process.
+
+### Documentation Approach
+
+Throughout exploratory testing, defects were documented immediately upon discovery using the defect tracking system. Each defect report captured the function being tested, the initial system state, detailed reproduction steps, expected outcomes (based on requirements in Appendix B), and actual outcomes. This disciplined documentation approach ensured that exploratory findings were reproducible and actionable despite the informal nature of the testing method.
 
 ---
 
@@ -162,7 +170,7 @@ The peer review process substantially improved defect report quality:
 
 ### Learning Outcomes from Peer Review
 
-The peer review experience taught us that defect reporting is both a technical and communication skill. Even when a defect is clearly observed, communicating it effectively to developers requires careful attention to detail, clear writing, and understanding of what information is necessary for debugging. The process also highlighted the value of fresh perspectives—reviewers often caught gaps or ambiguities that the original tester had overlooked due to familiarity with their own testing context.
+The peer review experience taught us that defect reporting is both a technical and communication skill. Even when a defect is clearly observed, communicating it effectively to developers requires careful attention to detail, clear writing, and understanding of what information is necessary for debugging. The process also highlighted the value of fresh perspectives-reviewers often caught gaps or ambiguities that the original tester had overlooked due to familiarity with their own testing context.
 
 ---
 
@@ -284,7 +292,7 @@ Throughout this lab, our team encountered several challenges that provided valua
 
 **Challenge**: The manual test suite in Appendix C was extensive (40 test cases), and combined with exploratory testing, defect reporting, and regression testing, time pressure became significant. We initially spent too much time on documentation and not enough on actual testing.
 
-**Solution**: We learned to balance thoroughness with efficiency. For defect reports, we adopted a "capture now, refine later" approach—logging essential details immediately and then enhancing reports during peer review. For test execution, we prioritized high-risk and high-priority test cases when time became constrained.
+**Solution**: We learned to balance thoroughness with efficiency. For defect reports, we adopted a "capture now, refine later" approach-logging essential details immediately and then enhancing reports during peer review. For test execution, we prioritized high-risk and high-priority test cases when time became constrained.
 
 **Lesson Learned**: Testing in resource-constrained environments requires constant prioritization. Risk-based testing principles (focusing effort where defects are most likely or most impactful) should guide testing when exhaustive testing is infeasible.
 
@@ -292,7 +300,7 @@ Throughout this lab, our team encountered several challenges that provided valua
 
 **Challenge**: None of our team members had prior experience with the defect tracking system (Jira/Azure DevOps). The initial learning curve consumed valuable testing time as we learned to navigate the interface, configure fields, and generate reports.
 
-**Lesson Learned**: Familiarity with testing tools is a valuable skill that should be developed early. In professional environments, investing time in tool training upfront pays dividends in long-term efficiency. We also learned that tools should enhance, not hinder, the testing process—when tool complexity becomes a barrier, simpler alternatives may be more appropriate.
+**Lesson Learned**: Familiarity with testing tools is a valuable skill that should be developed early. In professional environments, investing time in tool training upfront pays dividends in long-term efficiency. We also learned that tools should enhance, not hinder, the testing process-when tool complexity becomes a barrier, simpler alternatives may be more appropriate.
 
 ### Key Takeaways
 
@@ -344,7 +352,7 @@ This lab reinforced several fundamental testing principles:
 
 ### Overall Assessment
 
-Overall, this lab was a valuable and practical introduction to software testing. The hands-on nature, realistic system, and emphasis on both testing execution and defect documentation provided comprehensive exposure to fundamental testing concepts. The challenges we encountered were appropriate for a learning environment—difficult enough to require problem-solving and collaboration, but not so overwhelming as to be discouraging. The lab successfully achieved its stated objectives of providing practical testing experience, demonstrating differences between testing approaches, and familiarizing us with industrial defect tracking practices.
+Overall, this lab was a valuable and practical introduction to software testing. The hands-on nature, realistic system, and emphasis on both testing execution and defect documentation provided comprehensive exposure to fundamental testing concepts. The challenges we encountered were appropriate for a learning environment-difficult enough to require problem-solving and collaboration, but not so overwhelming as to be discouraging. The lab successfully achieved its stated objectives of providing practical testing experience, demonstrating differences between testing approaches, and familiarizing us with industrial defect tracking practices.
 
 We appreciate the opportunity to apply theoretical testing concepts to a concrete system and look forward to building on these foundational skills in subsequent labs and assignments.
 
