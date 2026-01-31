@@ -4,9 +4,9 @@
 
 **Group: 08**
 
-- Muhammad Zain - UCID: 30162484
-- Yazin Abdul Majid
-- Fateh Ali Syed Bukhari
+- Muhammad Zain 
+- Yazin Abdul Majid 
+- Fateh Ali Syed Bukhari 
 
 ## Table of Contents
 
@@ -132,13 +132,13 @@ In practice, these approaches proved highly complementary. Exploratory testing e
 
 ## Notes and Discussion of the Peer Reviews of Defect Reports
 
-The peer review process was a critical component of ensuring high-quality defect documentation. After each pair completed their testing sessions (both exploratory and Manual Functional Testing), we conducted systematic peer reviews of all recorded defect reports before finalizing them in the defect tracking system.
+The peer review process was a critical component of ensuring high-quality defect documentation. After we completed the testing sessions (both exploratory and Manual Functional Testing), we conducted systematic peer reviews of all recorded defect reports before finalizing them in the defect tracking system.
 
 ### Peer Review Process
 
 Our peer review workflow consisted of the following steps:
 
-1. Each pair independently conducted testing and documented defects in draft form
+1. Since we were three in a group, only one pair independently conducted testing and documented defects in draft form
 2. Pairs exchanged defect reports for cross-review
 3. Reviewers evaluated each defect report against established quality criteria
 4. Feedback was provided through comments in the tracking system
